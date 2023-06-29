@@ -3,7 +3,8 @@
 hg19:
   ref_fasta: ./ref_files/hg19/assembly/hg19.fasta
   star_index: ./ref_files/hg19/STAR_2.7.0f
-  rsem_ref: ./ref_files/hg19/RSEM/hg19
+  #rsem_ref: ./ref_files/hg19/RSEM/hg19
+  rsem_ref: ./ref_files/hg19/RSEM_star2.7.0f/hg19
   gtf_file: ./ref_files/hg19/Hg19_CTAT_resource_lib/ref_annot.gtf
   bed_file: ./ref_files/hg19/refseqGenesHg19.bed
   star_rRNA_index: ./ref_files/hg19/STAR_2.7.0f_GRCh37.35_ncrna

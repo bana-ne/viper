@@ -30,11 +30,12 @@ rule rsem:
         sample_name = lambda wildcards: wildcards.sample,
         stranded = "--strand-specific" if config["stranded"] else "",
         paired_end = "--paired-end" if len(config["samples"][config["ordered_sample_list"][0]]) == 2 else "",
-        gz_support="--star-gzipped-read-file" if config["samples"][config["ordered_sample_list"][0]][0][-3:] == '.gz' else ""
+        gz_support="--star-gzipped-read-file" if config["samples"][config["ordered_sample_list"][0]][0][-3:] == '.gz' else "",
+        rsem_ref= config.get('rsem_ref',""),
     shell:
         "rsem-calculate-expression -p {threads} {params.stranded}"
         " {params.paired_end} --star {params.gz_support}"
-        " --estimate-rspd --append-names {input} {config['rsem_ref']}"
+        " --estimate-rspd --append-names {input} {params.rsem_ref}"
         " analysis/rsem/{params.sample_name}/{params.sample_name} > {log}"
 
 rule rsem_iso_matrix:
@@ -103,7 +104,8 @@ rule rsem_filter_gene_ct_matrix:
     params:
         sample_names = " ".join(config["ordered_sample_list"]),
         min_num_samples_expressing_at_threshold=config['min_num_samples_expressing_at_threshold'],
-        RPKM_threshold=config['RPKM_threshold'],
+        #RPKM_threshold=config['RPKM_threshold'],
+        TPM_threshold=config.get('TPM_threshold', '1.0'),
         filter_mirna=config['filter_mirna'],
         numgenes_plots=config['numgenes_plots'],
     message: "Generating Pre-processed RSEM TPM matrix file"
