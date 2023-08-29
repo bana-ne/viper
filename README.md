@@ -437,7 +437,7 @@ Please see your local cluster documentation as well as the snakemake documentati
 ##APPENDIX X: installing and running CDR3 analysis with TRUST
 LEN TODO:
 
-##APPENDIX E: Running VIPER in docker container
+### APPENDIX E: Running VIPER in docker container
 With docker, the viper workflow will be executed in pre-configured isolated container that contains all dependency tools. You only need to pay attention to the following arguments when running viper in the Docker container.
 
 After you run viperSetup.sh in a folder, edited the config.yaml and the metasheet.csv, use the start command given below to start a docker container for the viper pipeline.
@@ -449,9 +449,9 @@ docker run --rm -v $PWD:/home/viper -v ${the data path on the host machine}:${th
 explanation:
 1.	-rm: This option will help delete the container immediately after it exits. This helps to prevent having to clean up containers after the workflow has finished running.
 2.	-v: there are several -v options in the command, here are explanations for each: 
-(1)	-v $PWD:/home/viper :  this maps the current work directory to the /home/viper folder, (current work directory is where you run the viperSetup.sh)
-(2)	-v ${the path of data on the host machine}:${the data path on the host machine} :  replace the content inside the {} with the actual path. This maps the data folder on the host machine to the docker container, make sure the paths before and after the ‘:’ are the same, and make sure this path is the same as the paths you use in the configure file.
-(3)	-v ${the path of reference file on the host machine}:/home/viper/ref_files :   replace the content inside the {} with the actual path. This maps the reference file from the host machine to the docker container.
+	(1)	-v $PWD:/home/viper :  this maps the current work directory to the /home/viper folder, (current work directory is where you run the viperSetup.sh)
+	(2)	-v ${the path of data on the host machine}:${the data path on the host machine} :  replace the content inside the {} with the actual path. This maps the data folder on the host machine to the docker container, make sure the paths before and after the ‘:’ are the same, and make sure this path is the same as the paths you use in the configure file.
+	(3)	-v ${the path of reference file on the host machine}:/home/viper/ref_files :   replace the content inside the {} with the actual path. This maps the reference file from the host machine to the docker container.
 3.	-it: option allows you to interact with the container’s shell and run any command inside of it.
 4.	viperdocker:1.0 : the name of our docker image, the 1.0 is the version of our docker image.
 
