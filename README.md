@@ -444,7 +444,7 @@ After you run viperSetup.sh in a folder, edited the config.yaml and the metashee
 
 Start command:
 
-docker run --rm -v $PWD:/home/viper -v ${the data path on the host machine}:${the data path on the host machine} -v ${the reference path on the host machine}:/home/viper/ref_files -it viperdocker:1.0
+`docker run --rm -v $PWD:/home/viper -v ${the data path on the host machine}:${the data path on the host machine} -v ${the reference path on the host machine}:/home/viper/ref_files -it cfce/viper`
 
 explanation:
 1.	-rm: This option will help delete the container immediately after it exits. This helps to prevent having to clean up containers after the workflow has finished running.
@@ -457,11 +457,11 @@ explanation:
 
 Once you are inside the viper container, it’s bash shell will be attached to the terminal, and the command prompt will change: “(base) root@5d8bf16cd2cb:/#”
 
-Use “cd /home” command to direct into the work directory. 
+Use `cd /home` command to direct into the work directory. 
 
-Use “source viperDocker_env.sh” to enter the viper conda environment.
+Use `source viperDocker_env.sh` to enter the viper conda environment.
 
-Then use “cd viper” command to direct to the folder where the viper pipeline runs in
+Then use `cd viper` command to direct to the folder where the viper pipeline runs in
 
 Make sure you have already changed the metasheet.csv and the config.yaml according to the structure of your data. 
 
