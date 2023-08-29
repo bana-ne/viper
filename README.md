@@ -18,6 +18,7 @@ Cornwell M, Vangala M, Taing L, Herbert Z, Köster J, Li B, Sun H, Li T, Zhang J
 5. [Appendix A: Dana-Farber Members](#DFmembers)
 6. [Appendix B: Specific VIPER Commands for Replotting](#replotting)
 7. [Setting up VIPER for a group of users or server](#serverSetup)
+8. [APPENDIX E: Running VIPER in docker container](#ViperDocker)
 
 # System requirements:
 Some of the tools that VIPER uses, e.g. STAR and cufflinks are very memory intensive programs.  Therefore we recommend the following system requirements for VIPER:
@@ -453,7 +454,7 @@ explanation:
 	(2)	-v ${the path of data on the host machine}:${the data path on the host machine} :  replace the content inside the {} with the actual path. This maps the data folder on the host machine to the docker container, make sure the paths before and after the ‘:’ are the same, and make sure this path is the same as the paths you use in the configure file.
 	(3)	-v ${the path of reference file on the host machine}:/home/viper/ref_files :   replace the content inside the {} with the actual path. This maps the reference file from the host machine to the docker container.
 3.	-it: option allows you to interact with the container’s shell and run any command inside of it.
-4.	viperdocker:1.0 : the name of our docker image, the 1.0 is the version of our docker image.
+4.	cfce/docker : the name of our docker image.
 
 Once you are inside the viper container, it’s bash shell will be attached to the terminal, and the command prompt will change: “(base) root@5d8bf16cd2cb:/#”
 
