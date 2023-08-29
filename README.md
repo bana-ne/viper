@@ -18,7 +18,6 @@ Cornwell M, Vangala M, Taing L, Herbert Z, Köster J, Li B, Sun H, Li T, Zhang J
 5. [Appendix A: Dana-Farber Members](#DFmembers)
 6. [Appendix B: Specific VIPER Commands for Replotting](#replotting)
 7. [Setting up VIPER for a group of users or server](#serverSetup)
-8. [APPENDIX E: Running VIPER in docker container](#ViperDocker)
 
 # System requirements:
 Some of the tools that VIPER uses, e.g. STAR and cufflinks are very memory intensive programs.  Therefore we recommend the following system requirements for VIPER:
