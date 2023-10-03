@@ -51,7 +51,5 @@ rule CPK_boxplot:
         "analysis/cdr3/CPK.png"
     message:
         """CDR3: generating CPK boxplot"""
-    benchmark:
-        "benchmarks/{sample}/{sample}.CDR3_TRUST.txt"
     shell:
         "Rscript viper/modules/scripts/cdr3_cpk_plot.R {input} {output}"
