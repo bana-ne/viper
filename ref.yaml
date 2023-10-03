@@ -62,7 +62,7 @@ mm9:
   reference: mm9
   gene_annotation: viper/static/mm9.annot.csv.bz2
   #STAR-Fusion
-  genome_lib_dir: ./ref_files/mm9/UCSC_mm9_build/
+  genome_lib_dir: ./ref_files/mm9/STAR_fusion1.6.0_300bp/ctat_genome_lib_build_dir/
 
   snpEff_conf: ./ref_files/mm9/snpEff/snpEff.config
   snpEff_db: NCBIm37.66
