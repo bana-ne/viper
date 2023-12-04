@@ -6,7 +6,10 @@
 #TEMP HACK- adding hg38; permanent soln- move to ref.yaml
 _HLA_regions = {'hg38':"chr6:28477797-33448354", 
                 'hg19':"chr6:28477797-33448354", 
-                'mm9':'chr17:34111604-36221194'}
+                'mm9':'chr17:34111604-36221194',
+                'mm10':'chr17:34111604-36221194',
+                'rn6':'chr20:1337242-5418012',
+                }
 
 #call snps from the samples
 #NOTE: lots of duplicated code below!--ONE SET for chr6 (default) and another
