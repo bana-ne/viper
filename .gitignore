@@ -1,6 +1,7 @@
 __pycache__/
-
-.vscode
+# ignore files used to test the pipeline
+test_files/
+README.rmd
 
 # Created by https://www.toptal.com/developers/gitignore/api/intellij+all,visualstudiocode,r,python
 # Edit at https://www.toptal.com/developers/gitignore?templates=intellij+all,visualstudiocode,r,python
@@ -322,11 +323,11 @@ rsconnect/
 
 ### VisualStudioCode ###
 .vscode/*
-!.vscode/settings.json
-!.vscode/tasks.json
-!.vscode/launch.json
-!.vscode/extensions.json
-!.vscode/*.code-snippets
+#!.vscode/settings.json
+#!.vscode/tasks.json
+#!.vscode/launch.json
+#!.vscode/extensions.json
+#!.vscode/*.code-snippets
 
 # Local History for Visual Studio Code
 .history/
