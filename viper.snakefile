@@ -8,6 +8,23 @@
 # @email: vangalamaheshh@gmail.com
 # @date: July, 1st, 2016
 #---------------------------
+# =============================================================================
+# Copyright: Copyright 2024, viper_adaption
+# License: GPL
+# Version: v0.1
+# Editor: Vanessa Mandel
+# Email: schmollv@mytum.de
+# Created: 27.05.2024 (DD.MM.YYYY)
+# Last Modified: 
+# =============================================================================
+""" Description:
+    Main Snakefile edited from the Viper pipeline for RNA-seq data processing
+    Cornwell M, et al. VIPER: Visualization Pipeline for RNA-seq, a Snakemake workflow for efficient and complete RNA-seq analysis. BMC Bioinformatics. 2018 PMID: 29649993.
+
+    This script includes all the modules defined in the Snakefiles inside the rules subdirectory.
+    An overview of the available modules can be found in the README.md file.
+"""
+# =============================================================================
 
 from modules.scripts.config_setup import updateConfig
 from modules.scripts.metasheet_setup import updateMeta
