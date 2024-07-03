@@ -1,3 +1,4 @@
+# versions updated June 2024
 name: viper
 channels: !!python/tuple
 - bioconda
@@ -5,85 +6,92 @@ channels: !!python/tuple
 - defaults
 dependencies:
 #GENERAL
-- snakemake=4.8.1
+- snakemake=8.13.0
 - samtools
-- python>=3.5.2
-- r>=3.4.1
+- python=3.11.0
+- pip=24.0
+
+# general r packages
+- r-base=4.3.3
+- r-data.table=1.15.2
+- r-ggpubr=0.6.0
+- r-rmarkdown=2.27
+- r-dplyr=1.1.4
+- r-argparse=2.2.3
 
 #align.snakefile
-- star=2.7.0f
+- star=2.7.8a
+- pip:
+  - pysam==0.22.1  # required for igv-reports=1.12 #
+  - igv-reports==1.12.0 # required for star-fusion
 - star-fusion=1.6.0
-- bioconductor-sva
+- bioconductor-sva=3.50.0
 
-#cdr3.snakefile-
-- pysam
-- biopython
-- r-venndiagram
-- r-corrplot
+#cdr3.snakefile
+- pip: 
+  - biopython==1.83
+- r-venndiagram=1.7.3
+- r-corrplot=0.92
 
-#cluster.snakefile-
-- r-ggrepel
-- bioconductor-complexheatmap 
-- r-circlize
-- r-dplyr
-- r-dendextend
+#cluster.snakefile
+- r-ggrepel=0.9.5
+- bioconductor-complexheatmap=2.18.0
+- r-circlize=0.4.16
+- r-dendextend=1.17.1
 
 #DE.snakefile
-- bioconductor-deseq2>=1.12.1
-- bioconductor-limma
-- bioconductor-edger
-- bioconductor-tximport
-- r-readr
-- r-calibrate
+- bioconductor-deseq2=1.42.0
+- bioconductor-limma=3.58.1
+- bioconductor-edger=4.0.16
+- bioconductor-tximport=1.30
+- r-readr=2.1.5
+- r-calibrate=1.7.7
 
 #gsea.snakefile
-- bioconductor-clusterprofiler
+- bioconductor-clusterprofiler=4.10.0
 
 #file_format.snakefile
-- bedtools
-- ucsc-bedsort
-- ucsc-bedgraphtobigwig
-- ucsc-fetchchromsizes
+- bedtools=2.31.1
+- ucsc-bedsort=466
+- ucsc-bedgraphtobigwig=455
+- ucsc-fetchchromsizes=466
 
 #immunology.snakefile
-- r-crayon
-- r-sqldf
+- r-crayon=1.5.2 
+- r-sqldf=0.4_11
 
 #pathway.snakefile
-- bioconductor-org.hs.eg.db
-- bioconductor-org.mm.eg.db
-- bioconductor-gostats
-- r-ggalt
-- r-mutoss
-- bioconductor-gage
-- bioconductor-gagedata
-- bioconductor-pathview
-- bioconductor-clusterprofiler
+- bioconductor-org.hs.eg.db=3.18.0
+- bioconductor-org.mm.eg.db=3.18.0
+- bioconductor-gostats=2.68.0
+- r-mutoss=0.1_12
+- bioconductor-gage=2.52.0
+- bioconductor-gagedata=2.40.0
+- bioconductor-pathview=1.42.0
+- bioconductor-clusterprofiler=4.10.0
+
+# TODO could only install r-ggalt=0.4.0 inside R with install.packages("ggalt")
+
 
 #readQC.snakefile
-- picard
+-  picard=3.2
 
 #rsem.snakefile
-- rsem
-- r-argparse
+- rsem=1.3.3
 
 #snp.snakefile
-- varscan
-- snpeff
+- varscan=2.4.6
+- snpeff=5.2
 
 #virusseq.snakefile
-- cufflinks
+# TODO add to singularity container apt-get update & apt-get -y install cufflinks # installed version 2.2.1
 
 #tools
-- bioconductor-biomart
+- bioconductor-biomart=2.58.0
 
 #misc.
-#BUG: missing libSM.so.6
-- xorg-libsm
-- cairo>=1.14.10
-#BUG missing libproj.so.12
-- proj4=4.9.3
-
-- pip:
-  #for star-fusion
-  - igv_reports
+#BUG: missing libSM.so.6 TODO check ???
+- xorg-libsm=1.2.4
+- cairo=1.18.0
+#BUG missing libproj.so.12 TODO check ???
+- proj4=6.1.1
