@@ -3,7 +3,7 @@ metasheet: metasheet.csv
 ref: viper/ref.yaml
 assembly: 'hg19'
 
-## Is your library stranded? options are [true, false]
+## Is your library stranded? -> depends on the sequencing protocol used: options are [true, false]
 stranded: true
 # Possible values are [ff-firststrand, ff-secondstrand, ff-unstranded, fr-firststrand, fr-secondstrand, fr-unstranded (default), transfrags]
 library_type: 'fr-firststrand'
@@ -38,7 +38,7 @@ batch_effect_removal: false
 goterm_adjpval_cutoff: 0.1
 ## Number of GOterms in plot
 numgoterms: 5
-## Number of KEGG pathways in plot (note there is no cutoff herre because the KEGG module takes in full population statistics)
+## Number of KEGG pathways in plot (note there is no cutoff here because the KEGG module takes in full population statistics)
 kegg_analysis: false
 numkeggpathways: 5
 
@@ -63,12 +63,15 @@ TPM_threshold: 1.0
 HLA_analysis: false
 
 samples:
-  #FOR SINGLE-END samples
-  SAMPLE1:
-    - /path/to/sample1.fastq.gz
-  #FOR PAIRED-END samples--WARNING: DON'T mix single-end samples w/ paired-end
-  SAMPLE1:
-    - /path/to/sample1_R1.fastq.gz
-    - /path/to/sample1_R2.fastq.gz
-  #SAMPLE2:
-  #ETC...
+  # fastq_path_prefix: /path/to
+  fastq_path_prefix: /path/to/fastq
+  # Alternatively, you can define specific sample names and their paths here:
+  # #FOR SINGLE-END samples
+  # SAMPLE1:
+  #   - /path/to/sample1.fastq.gz
+  # #FOR PAIRED-END samples--WARNING: DON'T mix single-end samples w/ paired-end
+  # SAMPLE1:
+  #   - /path/to/sample1_R1.fastq.gz
+  #   - /path/to/sample1_R2.fastq.gz
+  # #SAMPLE2:
+  # #ETC...
