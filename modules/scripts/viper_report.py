@@ -12,7 +12,7 @@ import os
 import glob
 import subprocess
 from scripts.csv_to_sphinx_table import get_sphinx_table 
-from snakemake.report import data_uri
+from snakemake.report.common import data_uri
 
 def get_sphinx_report(config):
     comps = config["comparisons"]

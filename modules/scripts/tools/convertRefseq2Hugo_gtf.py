@@ -44,7 +44,11 @@ def main():
             continue
         else:
             tmp = l.strip().split("\t")
-            dict[tmp[0]] = tmp[4].upper()
+            #dict[tmp[0]] = tmp[4].upper()
+            # NOTE: In the refseq ids mostly for ncRNA in hg19 there was no gene id in the link file and thus I kept the refseq ID.
+            # to show all ids I used the following bash command in my case I had 82 empty gene ids for hg19
+            # awk -F'\t' '{ if ($5 == "") print $1; }' hg19.names.bed
+            dict[tmp[0]] = tmp[0] if len(tmp) < 5 else tmp[4].upper()  # account for empty name2 elements
     f.close()
 
     #CONVERT:
@@ -57,8 +61,8 @@ def main():
             #select out last col -- gene attributes list
             attribs = tmp[-1].strip().split(";")
             #find the gene id attrib
-            refID = filter(lambda x: x.startswith('gene_id'), attribs)
-            if refID:
+            refID = list(filter(lambda x: x.startswith('gene_id'), attribs)) # convert filter output to list because otherwise it cannot be indexed 
+            if len(refID) > 0:
                 refID = refID[0].split(" ")[1]
                 #NOTE: we get something like "NM_001195025"; need to eval as
                 refID = eval(refID)

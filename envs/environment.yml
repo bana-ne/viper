@@ -1,6 +1,6 @@
 # versions updated June 2024
 name: viper
-channels: !!python/tuple
+channels: #!!python/tuple
 - bioconda
 - conda-forge
 - defaults

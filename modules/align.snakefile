@@ -18,3 +18,8 @@
 """
 # =============================================================================
 
+#TODO pick the correct alignment snakefile depending on the input files.
+# If fastq as input run align_star_fusion.snakefile
+# If evadb output run align_evadb.snakefile
+include: "./align_star_fusion.snakefile"         # rules specific to STAR and Fusion
+#include: "./modules/align_evadb.snakefile"         # rules specific to make the EVAdb output files work with the rest of the pipeline

@@ -13,7 +13,7 @@ from scripts.utils import _getGCTfile
 def getFastq(wildcards):
     return config["samples"][wildcards.sample]
 
-_logfile = "analysis/logs/rsem.txt"
+#_logfile = "analysis/logs/rsem.txt"
 
 rule rsem:
     input:
@@ -25,7 +25,8 @@ rule rsem:
     message: "Running RSEM on {wildcards.sample}"
     benchmark:
         "benchmarks/{sample}/{sample}.rsem_align.txt"
-    log: _logfile
+    #log: _logfile
+    log: "analysis/logs/rsem/{sample}_rsem.txt"
     params:
         sample_name = lambda wildcards: wildcards.sample,
         stranded = "--strand-specific" if config["stranded"] else "",
@@ -73,7 +74,7 @@ rule rsem_gene_process:
         "analysis/rsem/{sample}/{sample}.genes.processed.txt"
     message: "Processing the RSEM genes.results output"
     benchmark: 
-        "benchmarks/" + config["token"] + "/rsem_gene_process.txt"
+        "benchmarks/" + config["token"] + "/{sample}_rsem_gene_process.txt"
     run:
         shell("viper/modules/scripts/rsem_process_genes.py -f {input} 1> {output}")
 

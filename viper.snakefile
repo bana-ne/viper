@@ -31,7 +31,12 @@ from modules.scripts.metasheet_setup import updateMeta
 from modules.scripts.utils import getTargetInfo
 
 #---------  CONFIG set up  ---------------
-configfile: "config.yaml"   # This makes snakemake load up yaml into config 
+configfile: "./modules/test_files/config.yaml"   # This makes snakemake load up yaml into config TODO modules/test_files/
+"""
+import yaml
+with open('./modules/test_files/config.yaml', 'r') as file:
+    config = yaml.safe_load(file)
+"""
 config = updateConfig(config)
 config = updateMeta(config)
 #-----------------------------------------
@@ -40,7 +45,7 @@ rule target:
     input: getTargetInfo(config), "analysis/" + config["token"] + "/" + config["token"] + ".html"
     message: "Compiling all output"        
 
-include: "./modules/align.snakefile"         # rules specific to STAR and Fusion
+include: "./modules/align.snakefile"         # rules specific to either run the alignment or to use previously aligned files for the rest of the pipeline
 include: "./modules/cuff.snakefile"          # cufflinks' and fpkm plot rules
 include: "./modules/readQC.snakefile"        # RSeQC and Picard rules 
 include: "./modules/file_format.snakefile"   # bam to bigwig

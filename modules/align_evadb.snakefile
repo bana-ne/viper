@@ -20,6 +20,28 @@
 """
 # =============================================================================
 
+# from evadb I have the following output for each sample:
+"""
+merged.rmdup.bam                    #Aligned bam file
+merged.rmdup.bam.bai                #BAM index file
+merged.rmdup.bam.fpkm               #normalized fpkm counts
+merged.rmdup.bam.htseqcounts        #count file from htseq
+merged.rmdup.bam.htseqcounts.log    #htseq log file for creating counts
+"""
+# from the align_star_fusion.snakefile I have the following output:
+"""
+analysis/STAR/{sample}/{sample}.sorted.bam          #Aligned bam file
+analysis/STAR/{sample}/{sample}.sorted.bam.bai      #BAM index file
+analysis/STAR/{sample}/{sample}.counts.tab          #Gene counts table
+analysis/STAR/{sample}/{sample}.Log.final.out       #STAR log file
+analysis/STAR/{sample}/{sample}.Unmapped.out.mate1  #Single-end unmapped reads
+analysis/STAR/{sample}/{sample}.Unmapped.out.mate2  #Paired-end unmapped reads
+analysis/STAR/{sample}/{sample}.SJ.out.tab          #Splice junctions table
+"""
+
+
+
+#---------------------------------------------------
 # config["samples"] contains all sample names defined in the config.yaml file under samples
 def getFastq(wildcards):
     return config["samples"][wildcards.sample]

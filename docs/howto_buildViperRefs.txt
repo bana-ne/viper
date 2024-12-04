@@ -48,14 +48,15 @@ VIPER.  This how-to will show you the steps.
 
 4. BUILDING the STAR index:
    a. (viper) lentaing@CFCE2:~/viper/ref_files/hg38$ mkdir STAR
-   b. (viper) lentaing@CFCE2:~/viper/ref_files/hg38$ nohup time STAR --runThreadN 8 --runMode genomeGenerate --genomeDir STAR/ --genomeFastaFiles assembly/hg38.fa --sjdbGTFfile hg38.refseq.gtf > nohup.STARindex.out &
+   b. (viper) lentaing@CFCE2:~/viper/ref_files/hg38$ nohup time STAR --runThreadN 8 --runMode genomeGenerate --genomeDir STAR/ --genomeFastaFiles assembly/hg38.fa --sjdbGTFfile assembly/hg38.refseq.gtf > nohup.STARindex.out &
 
 5. Build humanhg19.annot.csv.bz2:
    STEPS:
       1. use viper/modules/scripts/tools/gtf2annot_bm.R to generate 
       	 an annotation FROM biomart-dataset:
          
-	 $ Rscript gtf2annot_bm.R hsapiens_gene_ensembl hg38.output.csv
+	 $ Rscript gtf2annot_bm.R hsapiens_gene_ensembl hg38.output.csv 38
+    #$ Rscript gtf2annot_bm.R hsapiens_gene_ensembl hg19.output.csv 37
 
          #Where hsapiens_gene_ensembl is the biomart dataset for your species,
          #see below
@@ -85,7 +86,11 @@ VIPER.  This how-to will show you the steps.
       	 snpEff$ cp viper/modules/scripts/tools/snpEff.config .
       2. Find the snpEff db associated with your species/assembly:
       	 (viper) snpEff$ snpEff databases | grep Homo_sapiens 
-	 #Look for the URL pointing to a zip file for that DB
+          To print the available zip files for e.g. hg19 you can use:
+          (viper) snpEff$ snpEff databases | grep Homo_sapiens | grep -w "hg19"
+          #Look for the URL pointing to a zip file for that DB
+          # NOTE: Link found with above command did not exist enymore. Manually going to database and then searching for hg19 worked
+          # https://sourceforge.net/projects/snpeff/files/databases/v4_3/snpEff_v4_3_hg19.zip
       3. Download the file given by the URL
       4. unzip the zip file
 
@@ -93,6 +98,7 @@ VIPER.  This how-to will show you the steps.
    ref: https://github.com/bli25ucb/RSEM_tutorial
    NOTE: need to use ensembl GTF (not the gtf you made in step #3)
    1. $ wget ftp://ftp.ensembl.org/pub/release-86/gtf/homo_sapiens/Homo_sapiens.GRCh38.86.chr.gtf.gz
+      # link for hg19 ftp://ftp.ensembl.org/pub/grch37/current/gtf/homo_sapiens/Homo_sapiens.GRCh37.87.chr.gtf.gz
    2. $ gunzip Homo_sapiens.GRCh38.86.chr.gtf.gz
    3. FIX the GTF in step #2 using viper/modules/scripts/tools/processEnsemblGtf.py
       ./processEnsemblGtf.py -f Homo_sapiens.GRCh38.86.chr.gtf > hg38.ensembl.gtf
@@ -103,6 +109,7 @@ VIPER.  This how-to will show you the steps.
 8. STAR_rRNA:
    0. HOW to find the ENSEMBL non-coding RNA FASTA file:
       The ftp URL follows this pattern:
+      # for hg19: ftp://ftp.ensembl.org/pub/grch37/release-87/fasta/homo_sapiens/ncrna/Homo_sapiens.GRCh37.ncrna.fa.gz
       ftp://ftp.ensembl.org/pub/release-86/fasta/homo_sapiens/ncrna/
       where release-86 is the ensembl version
       	    and homo_sapiens is species
@@ -119,6 +126,9 @@ VIPER.  This how-to will show you the steps.
 9. star_fusion: ***NOTE: only relevant for HUMAN and MOUSE
    *ref: https://github.com/STAR-Fusion/STAR-Fusion/wiki
    a. GOTO: https://data.broadinstitute.org/Trinity/CTAT_RESOURCE_LIB/
+   # mkdir star_fusion
+   # cd star_fusion
+   # wget https://data.broadinstitute.org/Trinity/CTAT_RESOURCE_LIB/GRCh37_gencode_v19_CTAT_lib_Mar012021.plug-n-play.tar.gz
    b. download the "plug-n-play" tar.gz for your assembly
    c. unzip the file
    d. FIX the gtf using viper/modules/scripts/tools/fixSTAR-FusionGtf.py
